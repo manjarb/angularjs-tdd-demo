@@ -1,0 +1,17 @@
+{
+  "name": "angularjs-tdd-demo",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Varis Darasirikul <varis.dara@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
