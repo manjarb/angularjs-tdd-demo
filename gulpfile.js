@@ -25,11 +25,13 @@ gulp.task('serve', ['server'], function () {
         .on('change', browserSync.reload);
 });
 
-gulp.task('test-browser', function () {
+gulp.task('test-browser', function (done) {
     karma.start({
         configFile: __dirname + '/karma.conf.js',
         singleRun: true,
-        reporter: ['mocha']
+        reporters: ['mocha', 'coverage']
+    }, function () {
+        done();
     });
 });
 
@@ -43,6 +45,19 @@ gulp.task('serve-test', function () {
                 '/bower_components': 'bower_components',
                 '/node_modules': 'node_modules'
             }
+        }
+    })
+
+    gulp.watch(['app/**/*.*'])
+        .on('change', browserSync.reload);
+});
+
+gulp.task('serve-coverage', ['test-browser'], function () {
+    browserSync.init({
+        notify: false,
+        port: 7777,
+        server: {
+            baseDir: ["test/coverage"]
         }
     })
 
