@@ -9,6 +9,10 @@ angular.module('AddressBook', [])
                    contactService.contacts.push(res.data.pop());
                }
            });
+
+        this.addContact = function(contact) {
+            contactService.contacts.push(contact);
+        }
     })
     .controller('ContactController', function (contactService, $scope) {
         $scope.contacts = contactService.contacts;
@@ -32,4 +36,9 @@ angular.module('AddressBook', [])
             },
             template: "<span class='avatar'>{{ name | proper }}</span>"
         }
+    })
+    .controller('AddContact', function ($scope, contactService) {
+        $scope.addContact = function () {
+           contactService.addContact($scope.contact);
+        };
     });
